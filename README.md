@@ -3,10 +3,11 @@
 This project checks available appointment dates at KVK: Kamer van Koophandel.
 
 ## Description
+I was surprised by how fully booked the KVK is, as I had always believed that the Dutch government actively encouraged entrepreneurship. As of February 14, 2025, there is a waitlist of about a month at the major KVK offices. This means that if you want to start your own business, you have to wait a full month to officially get started. In fast-moving fields like AI, this could be detrimental.
 
-I was surprised by how fully booked the KVK is. I had always been under the impression that the Dutch government was actively encouraging entrepreneurship. As of writing this on the 14th of February 2025, there is a waitlist of about a month at the major KVK offices.
-Fortunately, there are lots of last-minute cancellations and moved appointments. However, no one wants to keep looking at KVK's calendar hoping some spot opens up. Luckily, the KVK (accidentally) allows an API endpoint to be used even when you are not logged in. So we can monitor when slots open up and let you book your appointment without having to wait a full month.
-PS: This project is only able to show whether any timeslot is available on a day, regardless of which timeslot that is. The API endpoint for finding exact timeslots is properly authenticated, and thus hard to automate.
+Fortunately, there are many last-minute cancellations and rescheduled appointments. However, no one wants to constantly check KVK's calendar hoping for an open slot. Luckily, the KVK (accidentally) allows an API endpoint to be used even when you are not logged in. This enables us to monitor when slots open up and let you book your appointment without having to wait a full month.
+
+Please note that this project can only show whether any timeslot is available on a given day, regardless of the specific timeslot. The API endpoint for finding exact timeslots is properly authenticated and thus hard to automate.
 
 ## Usage
 
