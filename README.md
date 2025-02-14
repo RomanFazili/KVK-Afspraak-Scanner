@@ -1,4 +1,4 @@
-# KVK Appointment Monitor
+# KVK Appointment Scanner
 
 This project checks available appointment dates at KVK: Kamer van Koophandel.
 
