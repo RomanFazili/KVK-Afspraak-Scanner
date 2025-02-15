@@ -58,7 +58,6 @@ def monitor_appointments(location: str, service: str, interval: int) -> None:
                 logging.info(f"Newly removed date(s): {format_dates(newly_removed_dates)}")
 
             available_dates = set(dates).copy()
-            available_dates.remove('2025-03-13T00:00:00')
         time.sleep(interval)
 
 def main() -> None:
