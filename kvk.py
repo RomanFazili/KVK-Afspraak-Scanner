@@ -1,5 +1,6 @@
 import argparse
 import logging
+import random
 import time
 from typing import Optional
 
@@ -24,7 +25,7 @@ def fetch_appointment_dates(location: str, service: str) -> Optional[list[str]]:
         return None
 
     url = f'https://web-api.kvk.nl/appointments/dates/{appointment_service_id}/{location_id}'
-    response = requests.get(url=url)
+    response = requests.get(url=url, headers={'User-Agent': f'Mozilla/5.0 {random.choice(range(100))}'})
 
     if response.status_code == 200:
         return format_dates(response.json())
