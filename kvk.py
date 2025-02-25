@@ -27,11 +27,14 @@ def fetch_appointment_dates(location: str, service: str) -> Optional[list[str]]:
     url = f'https://web-api.kvk.nl/appointments/dates/{appointment_service_id}/{location_id}'
     response = requests.get(url=url, headers={'User-Agent': f'Mozilla/5.0 {random.choice(range(100))}'})
 
-    if response.status_code == 200:
+    if response.status_code == 400:
+        logging.error("Request rejected due to too many requests. Please try again later.")
+    elif response.status_code == 200:
         return format_dates(response.json())
     else:
         logging.error(f"Failed to fetch data: {response.status_code} - {response.text}")
-        return None
+
+    return None
 
 
 def monitor_appointments(location: str, service: str, interval: int) -> None:
@@ -59,7 +62,7 @@ def monitor_appointments(location: str, service: str, interval: int) -> None:
                 logging.info(f"Newly removed date(s): {format_dates(newly_removed_dates)}")
 
             available_dates = set(dates).copy()
-        time.sleep(interval)
+        time.sleep(max(0, interval + random.randint(-500, 500) / 100))
 
 def main() -> None:
     """Main function to parse arguments and fetch or monitor appointment dates."""
@@ -74,12 +77,12 @@ def main() -> None:
 
     logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
 
+    dates = fetch_appointment_dates(args.location.upper(), args.service.upper())
+    if dates:
+        print(dates)
+
     if args.monitor:
         monitor_appointments(args.location.upper(), args.service.upper(), args.interval)
-    else:
-        dates = fetch_appointment_dates(args.location.upper(), args.service.upper())
-        if dates:
-            print(dates)
 
 if __name__ == '__main__':
     main()
